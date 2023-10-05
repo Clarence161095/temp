@@ -102,11 +102,14 @@ def home():
         print(input_data)
         print(prediction)
         print(predicted_classe)
+        # Chuyển đổi giá trị prediction và predicted_classe thành chuỗi
+        predicted_classe_str = str(predicted_classe[0][0])
+        prediction_str = "{:.2f}%".format(prediction[0][0]*100)
 
         # Determine the result (DEATH_EVENT)
-        result = "Possible (Death_Event = 1)" if predicted_classe[0][0] == 1 else "Not Possible (Death_Event = 0)"
+        result = "Possible" if predicted_classe[0][0] == 1 else "Not Possible"
 
-        return render_template("result.html", result=result, input_data=input_data)
+        return render_template("result.html", result=result, input_data=input_data, prediction=prediction_str, predicted_classe=predicted_classe_str)
 
     return render_template("index.html")
 
